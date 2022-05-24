@@ -41,8 +41,13 @@ export class GameService {
       });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} game`;
+  findOne(id: number) { 
+    return this.repository.findOneOrFail({
+      where: {id: id},
+      relations: {
+        tag: true
+      }
+    });
   }
 
   update(id: number, updateGameDto: UpdateGameDto) {

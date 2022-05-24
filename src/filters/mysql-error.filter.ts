@@ -9,6 +9,7 @@ export class MysqlErrorFilter<T> implements ExceptionFilter {
     const context = host.switchToHttp();
     const response = context.getResponse<Response>();
     const request = context.getRequest<Request>();
+
     let httpStatus =
       exception instanceof HttpException
         ? exception.getStatus()
