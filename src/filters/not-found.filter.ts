@@ -2,7 +2,6 @@ import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Type, HttpStatus 
 import { Request, Response } from 'express';
 import { EntityNotFoundError } from 'typeorm';
 
-@Catch(EntityNotFoundError)
 export class NotFoundFilter<T> implements ExceptionFilter {
   catch(exception: any, host: ArgumentsHost) {
 

@@ -34,7 +34,7 @@ export class Game {
     @ManyToOne(() => Publisher)
     publisher: Publisher;
 
-    @ManyToMany(() => Tag)
+    @ManyToMany(() => Tag, { cascade: true })
     @JoinTable()
     tag: Tag[];
 }

@@ -86,7 +86,7 @@ export class GameService {
     });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} game`;
+  async remove(id: number) {
+    return await this.repository.delete(id);
   }
 }

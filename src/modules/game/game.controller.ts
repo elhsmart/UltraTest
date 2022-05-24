@@ -61,7 +61,7 @@ export class GameController {
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return this.gameService.findOne(+id);
+    return this.gameService.findOneWithTags(+id);
   }
 
   @Get(':id/publisher')
@@ -107,7 +107,13 @@ export class GameController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
+    let game = await this.gameService.findOneWithTags(+id);
+    game.tag = null;
+    // removing relations
+    await this.gameService.save(game);
+
+    // removing game
     return this.gameService.remove(+id);
   }
 }
