@@ -21,7 +21,6 @@ export class TagService {
                 newTag.title = tags[x];
                 searchTags.push(await this.repository.save(newTag));
             }
-
             return searchTags;
         }
 
@@ -37,7 +36,6 @@ export class TagService {
             newTag.title = unknownTags[x];
             searchTags.push(await this.repository.save(newTag));
         }        
-
         return searchTags;
     }
 }

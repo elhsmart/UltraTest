@@ -1,9 +1,11 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
 import { Game } from './entities/game.entity';
+import { Pagination, PaginationOptionsInterface } from './../pagination';
+
 
 @Injectable()
 export class GameService {
@@ -24,8 +26,19 @@ export class GameService {
     return this.repository.save(game);
   }
 
-  findAll() {
-    return `This action returns all game`;
+  async findAll(options: PaginationOptionsInterface,
+    ): Promise<Pagination<Game>> {
+      const [results, total] = await this.repository.findAndCount({
+        take: options.limit,
+        skip: options.offset
+      });
+      let limit = results.length;
+  
+      return new Pagination<Game>({
+        results,
+        total,
+        limit
+      });
   }
 
   findOne(id: number) {

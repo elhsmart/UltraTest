@@ -1,15 +1,20 @@
-import { UsePipes, Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe } from '@nestjs/common';
+import { UsePipes, Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, Request} from '@nestjs/common';
 import { GameService } from './game.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
 import { PublisherService } from '../publisher/publisher.service';
 import { TagService } from '../tag/tag.service';
+import { Pagination } from '../pagination';
+import { Game } from './entities/game.entity';
+import { ConfigService } from '@nestjs/config';
+
 
 @Controller('game')
 export class GameController {
   constructor(private readonly gameService: GameService, 
               private readonly publisherService: PublisherService,
-              private readonly tagSevice: TagService) {}
+              private readonly tagSevice: TagService,
+              private readonly configService: ConfigService) {}
 
   @UsePipes(new ValidationPipe({ transform: true }))
   @Post()
@@ -34,8 +39,13 @@ export class GameController {
   }
 
   @Get()
-  findAll() {
-    return this.gameService.findAll();
+  async getAll(@Request() request): Promise<Pagination<Game>> {
+    let configPaginationLimit = this.configService.get<number>('PAGINATION_LIMIT') ? this.configService.get<number>('PAGINATION_LIMIT') : 10;
+    let configPaginationOffset = this.configService.get<number>('PAGINATION_OFFSET') ? this.configService.get<number>('PAGINATION_OFFSET') : 0;
+    return await this.gameService.findAll({
+      limit: request.query.hasOwnProperty('limit') ? request.query.limit : configPaginationLimit,
+      offset: request.query.hasOwnProperty('offset') ? request.query.offset : configPaginationOffset,
+    });
   }
 
   @Get(':id')

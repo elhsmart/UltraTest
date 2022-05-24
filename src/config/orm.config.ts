@@ -15,7 +15,7 @@ export const typeOrmModuleOptions:TypeOrmModuleOptions = {
     entities: [ __dirname + '/../**/entities/*.entity.{ts,js}' ],
     autoLoadEntities: true,
     synchronize: true,
-    logging: true
+    logging: true,    
 }
 
 export const connectionSource = new DataSource({
