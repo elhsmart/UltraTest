@@ -24,7 +24,7 @@ services:
             dockerfile: ./Dockerfile
         command: sh -c "npm run typeorm migration:run && npm run start:debug"
         ports:
-            - 3000:3000
+            - ${APP_PORT}:${APP_PORT}
             - 9229:9229
         networks:
             - ultratest-network

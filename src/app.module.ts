@@ -3,8 +3,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PublisherModule } from './publisher/publisher.module';
+import { PublisherModule } from './modules/publisher/publisher.module';
 import { typeOrmModuleOptions } from './config/orm.config';
+import { TagModule } from './modules/tag/tag.module';
+import { DiscountModule } from './modules/discount/discount.module';
+import { GameModule } from './modules/game/game.module';
 
 @Module({
   imports: [
@@ -18,7 +21,10 @@ import { typeOrmModuleOptions } from './config/orm.config';
           ...typeOrmModuleOptions
       })
     }),
-    PublisherModule
+    PublisherModule,
+    TagModule,
+    DiscountModule,
+    GameModule
   ],
   controllers: [AppController],
   providers: [AppService],
