@@ -1,15 +1,10 @@
 import { 
-    ValidateNested, 
     IsNumberString, 
     IsString,
     IsNotEmpty,
     IsOptional,
-    IsArray,
-    IsInt,
     IsDateString
 } from 'class-validator';
-import { Type } from 'class-transformer';
-import { CreateTagDto } from 'src/modules/tag/dto/create-tag.dto';
 import { PublisherExists } from 'src/modules/publisher/decorators';
 
 export class CreateGameDto {
@@ -34,8 +29,6 @@ export class CreateGameDto {
 	releaseDate: Date;    
 
     @IsOptional()
-    @IsArray()
-    @ValidateNested({ each: true })
-    @Type(() => CreateTagDto)
-    tag: CreateTagDto[];
+    @IsString({ message: 'tag list must be string.' })
+    tag: string;
 }

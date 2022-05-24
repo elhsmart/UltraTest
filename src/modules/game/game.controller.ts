@@ -2,16 +2,35 @@ import { UsePipes, Controller, Get, Post, Body, Patch, Param, Delete, Validation
 import { GameService } from './game.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
+import { PublisherService } from '../publisher/publisher.service';
+import { TagService } from '../tag/tag.service';
 
 @Controller('game')
 export class GameController {
-  constructor(private readonly gameService: GameService) {}
+  constructor(private readonly gameService: GameService, 
+              private readonly publisherService: PublisherService,
+              private readonly tagSevice: TagService) {}
 
-  @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
-  create(@Body() createGameDto: CreateGameDto) {
+  @Post()
+  async create(@Body() createGameDto: CreateGameDto) {
+    let game = await this.gameService.create(createGameDto);
+    
+    if(createGameDto.publisherId) {
+      game.publisher = await this.publisherService.findOneById(createGameDto.publisherId);
+      await this.gameService.save(game);
+    }
 
-    return this.gameService.create(createGameDto);
+    if(createGameDto.tag) {
+      game.tag = await this.tagSevice.findOrCreate(
+          createGameDto.tag
+            .split(",")
+            .map(tagName => (tagName.trim()))
+        );
+        await this.gameService.save(game);
+    }
+
+    return game;
   }
 
   @Get()

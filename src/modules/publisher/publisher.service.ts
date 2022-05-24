@@ -8,7 +8,7 @@ export class PublisherService {
     @InjectRepository(Publisher)
     private readonly repository: Repository<Publisher>;
 
-    findOneById(id: number) {
+    async findOneById(id: number) {
         return this.repository.findOne({
             where: {
                 id: id
