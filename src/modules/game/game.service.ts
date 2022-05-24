@@ -43,9 +43,24 @@ export class GameService {
 
   findOne(id: number) { 
     return this.repository.findOneOrFail({
+      where: {id: id}
+    });
+  }
+
+  findOneWithTags(id: number) {
+    return this.repository.findOneOrFail({
       where: {id: id},
       relations: {
-        tag: true
+        tag: true,
+      }
+    });
+  }
+
+  findOneWithPublisher(id: number) {
+    return this.repository.findOneOrFail({
+      where: {id: id},
+      relations: {
+        publisher: true
       }
     });
   }

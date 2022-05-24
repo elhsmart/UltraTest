@@ -1,4 +1,4 @@
-import { UsePipes, Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, Request} from '@nestjs/common';
+import { UsePipes, Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, Request, NotFoundException} from '@nestjs/common';
 import { GameService } from './game.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
@@ -49,9 +49,18 @@ export class GameController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.gameService.findOne(+id);
   }
+
+  @Get(':id/publisher')
+  async findGamePublisher(@Param('id') id: string) {
+    let game = await this.gameService.findOneWithPublisher(+id);
+    if(game.publisher == null) {
+      throw new NotFoundException(`Publisher for Game with id :${game.id} not found.`);
+    }
+    return game.publisher;
+  }  
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto) {
