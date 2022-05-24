@@ -65,8 +65,25 @@ export class GameService {
     });
   }
 
-  update(id: number, updateGameDto: UpdateGameDto) {
-    return `This action updates a #${id} game`;
+  async update(id: number, updateGameDto: UpdateGameDto) {
+    const game: Game = new Game();
+
+    game.title = updateGameDto.title;
+    game.price = updateGameDto.price;
+    game.releaseDate = updateGameDto.releaseDate;
+
+    if(!updateGameDto.publisherId) {
+      game.publisher = null;
+    }
+
+    if(!updateGameDto.tag) {
+      game.tag = null;
+    }    
+    
+    return await this.repository.save({
+      id: id, 
+      ...game
+    });
   }
 
   remove(id: number) {
