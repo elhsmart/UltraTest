@@ -15,6 +15,36 @@ services:
             - MYSQL_DATABASE=${MYSQL_DATABASE}
             - MYSQL_USER=${MYSQL_USER}
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}  
+    redis:
+        container_name: ultratest_queue
+        image: redis:6.0.8
+        ports:
+            - 6379:6379
+        networks:
+            - ultratest-network
+        command: sh -c "redis-server --appendonly yes"
+        volumes:
+            - redis_data:/var/lib/redis       
+        restart: "always"
+        depends_on:
+            - db
+    runner:
+        container_name: ultratest_runner
+        image: ultratest-dev:1.0.0
+        build:
+            context: .
+            target: development
+            dockerfile: ./Dockerfile
+        command: sh -c "npm run worker:start:dev"
+        networks:
+            - ultratest-network
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        restart: unless-stopped
+        depends_on:
+            - db
+            - redis
     dev:
         container_name: ultratest_dev
         image: ultratest-dev:1.0.0
@@ -34,9 +64,12 @@ services:
         restart: unless-stopped
         depends_on:
             - db
+            - runner
 networks:
     ultratest-network:
 volumes:
     mysql_data:
         name: mysql_data
+    redis_data:
+        name: redis_data
 

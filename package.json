@@ -13,6 +13,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
+    "worker:start:dev": "nest start --debug --config nest-cli-worker.json --watch",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -22,6 +23,7 @@
     "typeorm": "node -r tsconfig-paths/register -r ts-node/register ./node_modules/typeorm/cli.js --dataSource src/config/orm.config.ts"
   },
   "dependencies": {
+    "@nestjs/bull": "^0.5.5",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.0.1",
@@ -29,6 +31,8 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/typeorm": "^8.0.4",
+    "@types/bull": "^3.15.8",
+    "bull": "^4.8.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "mysql2": "^2.3.3",

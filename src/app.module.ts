@@ -8,6 +8,8 @@ import { typeOrmModuleOptions } from './config/orm.config';
 import { TagModule } from './modules/tag/tag.module';
 import { DiscountModule } from './modules/discount/discount.module';
 import { GameModule } from './modules/game/game.module';
+import { BullModule } from '@nestjs/bull';
+import { WorkerModule } from './modules/worker/worker.module';
 
 @Module({
   imports: [
@@ -21,10 +23,18 @@ import { GameModule } from './modules/game/game.module';
           ...typeOrmModuleOptions
       })
     }),
+    BullModule.registerQueue({
+      name: 'ultratest-queue',
+      redis: {
+        host: 'redis',
+        port: 6379,
+      },
+    }),
     PublisherModule,
     TagModule,
     DiscountModule,
-    GameModule
+    GameModule,
+    WorkerModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -109,11 +109,6 @@ export class GameController {
   @Delete(':id')
   async remove(@Param('id') id: string) {
     let game = await this.gameService.findOneWithTags(+id);
-    game.tag = null;
-    // removing relations
-    await this.gameService.save(game);
-
-    // removing game
     return this.gameService.remove(+id);
   }
 }

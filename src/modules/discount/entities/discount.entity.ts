@@ -1,8 +1,11 @@
+import { Game } from 'src/modules/game/entities/game.entity';
 import { 
     PrimaryGeneratedColumn, 
     CreateDateColumn,
     Column, 
     Entity,
+    OneToOne,
+    JoinColumn
 } from 'typeorm';
 
 @Entity('discounts')
@@ -16,4 +19,8 @@ export class Discount {
 
     @CreateDateColumn({ type: 'timestamp' })
     public createdAt: Date;
+
+    @OneToOne(() => Game)
+    @JoinColumn()
+    game: Game;
 }
