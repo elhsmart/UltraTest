@@ -1,4 +1,4 @@
-import { Game } from 'src/modules/game/entities/game.entity';
+import { Game } from './../../game/entities/game.entity';
 import {
   PrimaryGeneratedColumn,
   CreateDateColumn,

@@ -1,5 +1,5 @@
-import { PublicDiscountDto } from 'src/modules/discount/dto/public-discount.dto';
-import { PublicTagDto } from 'src/modules/tag/dto/public-tag.dto';
+import { PublicDiscountDto } from './../../../modules/discount/dto/public-discount.dto';
+import { PublicTagDto } from './../../../modules/tag/dto/public-tag.dto';
 
 export class PublicGameDto {
   id: number;

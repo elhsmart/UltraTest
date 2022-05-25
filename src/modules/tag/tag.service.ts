@@ -28,11 +28,9 @@ export class TagService {
       (x) => !searchTags.map((tag) => tag.title).includes(x),
     );
     if (unknownTags.length === 0) {
-      console.log(searchTags);
       return searchTags;
     }
 
-    console.log(unknownTags);
     for (let x = 0; x < unknownTags.length; x++) {
       let newTag = new Tag();
       newTag.title = unknownTags[x];

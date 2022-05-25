@@ -14,8 +14,9 @@ export const typeOrmModuleOptions: TypeOrmModuleOptions = {
   database: process.env.MYSQL_DATABASE,
   entities: [__dirname + '/../**/entities/*.entity.{ts,js}'],
   autoLoadEntities: true,
-  synchronize: true,
-  logging: true,
+  synchronize: false,
+  logging: false,
+  keepConnectionAlive: true
 };
 
 export const connectionSource = new DataSource({

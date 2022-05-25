@@ -1,5 +1,5 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
-import { Publisher } from 'src/modules/publisher/entities';
+import { Publisher } from './../modules/publisher/entities';
 
 export class seedTablePublisher1653179146453 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

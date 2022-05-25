@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "4bce8f0d-7b02-416b-8334-1dcd7a329486",
+		"name": "UltraTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21099283"
+	},
+	"item": [
+		{
+			"name": "localhost:8080",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080",
+					"host": [
+						"localhost"
+					],
+					"port": "8080"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/game",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "SoC",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "95.61",
+							"type": "text"
+						},
+						{
+							"key": "releaseDate",
+							"value": "2019-01-01",
+							"type": "text"
+						},
+						{
+							"key": "publisherId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "tag",
+							"value": "test, test2, test7",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/game",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/game/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "SoC9",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "195.60",
+							"type": "text"
+						},
+						{
+							"key": "releaseDate",
+							"value": "2021-01-01",
+							"type": "text"
+						},
+						{
+							"key": "publisherId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "tag",
+							"value": "test, test2, test55",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/game/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/game/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "SoC52",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "95.61",
+							"type": "text"
+						},
+						{
+							"key": "releaseDate",
+							"value": "2021-01-01",
+							"type": "text"
+						},
+						{
+							"key": "publisherId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "tag",
+							"value": "test, test2, test7",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/game/75",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"75"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/game",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/game/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/game/:id/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/game/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/game/:id/publisher",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/game/70/publisher",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"game",
+						"70",
+						"publisher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/run-discounting",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/run-discounting",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"run-discounting"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

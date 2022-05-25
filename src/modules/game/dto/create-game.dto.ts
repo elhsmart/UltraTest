@@ -5,7 +5,7 @@ import {
   IsOptional,
   IsDateString,
 } from 'class-validator';
-import { PublisherExists } from 'src/modules/publisher/decorators';
+import { PublisherExists } from './../../../modules/publisher/decorators';
 
 export class CreateGameDto {
   @IsNotEmpty({ message: 'title cannot be empty.' })

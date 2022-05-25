@@ -1,5 +1,5 @@
-import { Publisher } from 'src/modules/publisher/entities';
-import { Tag } from 'src/modules/tag/entities';
+import { Publisher } from './../../../modules/publisher/entities';
+import { Tag } from './../../../modules/tag/entities';
 import {
   PrimaryGeneratedColumn,
   CreateDateColumn,

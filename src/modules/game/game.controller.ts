@@ -17,8 +17,6 @@ import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
 import { PublisherService } from '../publisher/publisher.service';
 import { TagService } from '../tag/tag.service';
-import { Pagination } from '../pagination';
-import { Game } from './entities/game.entity';
 import { ConfigService } from '@nestjs/config';
 import { GameMapper } from './game.mapper';
 import { DiscountService } from '../discount/discount.service';

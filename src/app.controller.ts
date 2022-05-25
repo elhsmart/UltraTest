@@ -18,8 +18,6 @@ export class AppController {
   @Get('run-discounting')
   async runDiscounting() {
     let res = await this.queue.add('run-discounting', { testpayload: 'test' });
-    console.log('PUT DISCOUNTS JOB PAYLOAD');
-    console.log(res);
     return {
       status: 'ok',
     };
