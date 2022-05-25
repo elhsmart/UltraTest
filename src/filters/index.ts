@@ -1,1 +1,1 @@
-export * from './mysql-error.filter'
+export * from './mysql-error.filter';

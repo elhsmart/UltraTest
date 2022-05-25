@@ -14,14 +14,14 @@ import { WorkerModule } from './modules/worker/worker.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-          ...typeOrmModuleOptions
-      })
+        ...typeOrmModuleOptions,
+      }),
     }),
     BullModule.registerQueue({
       name: 'ultratest-queue',
@@ -34,7 +34,7 @@ import { WorkerModule } from './modules/worker/worker.module';
     TagModule,
     DiscountModule,
     GameModule,
-    WorkerModule
+    WorkerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

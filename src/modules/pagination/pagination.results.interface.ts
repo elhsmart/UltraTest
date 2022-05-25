@@ -1,5 +1,5 @@
 export interface PaginationResultInterface<PaginationEntity> {
-    results: PaginationEntity[];
-    total: number;
-    limit: number;
+  results: PaginationEntity[];
+  total: number;
+  limit: number;
 }

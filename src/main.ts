@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
-import { useContainer } from "class-validator";
+import { useContainer } from 'class-validator';
 import { MysqlErrorFilter } from './filters';
 
 async function bootstrap() {

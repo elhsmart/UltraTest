@@ -5,14 +5,14 @@ import { Discount } from './entities';
 
 @Injectable()
 export class DiscountService {
-    @InjectRepository(Discount)
-    private readonly repository: Repository<Discount>
+  @InjectRepository(Discount)
+  private readonly repository: Repository<Discount>;
 
-    async findOneByGame(id: number) {
-        return await this.repository.findOne({
-            where: {
-                game: {id:id}
-            }
-        })
-    }
+  async findOneByGame(id: number) {
+    return await this.repository.findOne({
+      where: {
+        game: { id: id },
+      },
+    });
+  }
 }

@@ -5,6 +5,6 @@ import { Publisher } from './entities';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Publisher])],
-  providers: [PublisherService]
+  providers: [PublisherService],
 })
 export class PublisherModule {}

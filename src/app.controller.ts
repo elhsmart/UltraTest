@@ -7,7 +7,7 @@ import { Queue } from 'bull';
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    @InjectQueue('ultratest-queue') private queue: Queue
+    @InjectQueue('ultratest-queue') private queue: Queue,
   ) {}
 
   @Get()
@@ -17,11 +17,11 @@ export class AppController {
 
   @Get('run-discounting')
   async runDiscounting() {
-    let res = await this.queue.add('run-discounting', {testpayload: "test"});
+    let res = await this.queue.add('run-discounting', { testpayload: 'test' });
     console.log('PUT DISCOUNTS JOB PAYLOAD');
     console.log(res);
     return {
-      status: "ok"
-    }
+      status: 'ok',
+    };
   }
 }

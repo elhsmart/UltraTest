@@ -1,7 +1,7 @@
-import { PublicGameDto } from "./public-game.dto";
+import { PublicGameDto } from './public-game.dto';
 
 export class PublicGamesDto {
-    results: PublicGameDto[];
-    limit: number;
-    count: number;
+  results: PublicGameDto[];
+  limit: number;
+  count: number;
 }

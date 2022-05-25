@@ -1,1 +1,1 @@
-export * from './publisher.exist.decorator'
+export * from './publisher.exist.decorator';

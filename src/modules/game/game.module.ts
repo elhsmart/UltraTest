@@ -30,7 +30,7 @@ import { Discount } from '../discount/entities';
     DiscountService,
     GameMapper,
     TagMapper,
-    DiscountMapper
-  ]
+    DiscountMapper,
+  ],
 })
 export class GameModule {}

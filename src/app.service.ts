@@ -11,8 +11,8 @@ export class AppService {
   private status: ApiVersion = {
     title: 'Games API',
     version: '0.1',
-    status: 'ok'
-  }
+    status: 'ok',
+  };
 
   getApiVersion(): ApiVersion {
     return this.status;

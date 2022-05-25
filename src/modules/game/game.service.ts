@@ -6,7 +6,6 @@ import { UpdateGameDto } from './dto/update-game.dto';
 import { Game } from './entities/game.entity';
 import { Pagination, PaginationOptionsInterface } from './../pagination';
 
-
 @Injectable()
 export class GameService {
   @InjectRepository(Game)
@@ -26,42 +25,43 @@ export class GameService {
     return this.repository.save(game);
   }
 
-  async findAll(options: PaginationOptionsInterface,
-    ): Promise<Pagination<Game>> {
-      const [results, total] = await this.repository.findAndCount({
-        take: options.limit,
-        skip: options.offset
-      });
-      let limit = results.length;
-  
-      return new Pagination<Game>({
-        results,
-        total,
-        limit
-      });
+  async findAll(
+    options: PaginationOptionsInterface,
+  ): Promise<Pagination<Game>> {
+    const [results, total] = await this.repository.findAndCount({
+      take: options.limit,
+      skip: options.offset,
+    });
+    let limit = results.length;
+
+    return new Pagination<Game>({
+      results,
+      total,
+      limit,
+    });
   }
 
-  findOne(id: number) { 
+  findOne(id: number) {
     return this.repository.findOneOrFail({
-      where: {id: id}
+      where: { id: id },
     });
   }
 
   findOneWithTags(id: number) {
     return this.repository.findOneOrFail({
-      where: {id: id},
+      where: { id: id },
       relations: {
         tag: true,
-      }
+      },
     });
   }
 
   findOneWithPublisher(id: number) {
     return this.repository.findOneOrFail({
-      where: {id: id},
+      where: { id: id },
       relations: {
-        publisher: true
-      }
+        publisher: true,
+      },
     });
   }
 
@@ -72,17 +72,17 @@ export class GameService {
     game.price = updateGameDto.price;
     game.releaseDate = updateGameDto.releaseDate;
 
-    if(!updateGameDto.publisherId) {
+    if (!updateGameDto.publisherId) {
       game.publisher = null;
     }
 
-    if(!updateGameDto.tag) {
+    if (!updateGameDto.tag) {
       game.tag = null;
-    }    
-    
+    }
+
     return await this.repository.save({
-      id: id, 
-      ...game
+      id: id,
+      ...game,
     });
   }
 
